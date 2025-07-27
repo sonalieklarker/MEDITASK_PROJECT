@@ -1,0 +1,33 @@
+-- database: ./medi_task.db
+
+SELECT * FROM tasks
+ORDER BY `priority` ASC;
+CREATE TABLE IF NOT EXISTS tasks (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    task_name VARCHAR(255),
+    start_time TIME,
+    end_time TIME,
+    priority INT,
+    repeat_interval VARCHAR(255),
+    patient_id INT
+);
+CREATE TABLE IF NOT EXISTS patients (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    patient_name VARCHAR(255),
+    email VARCHAR(255),
+    task_history TEXT
+);
+
+INSERT INTO patients (patient_name, email, task_history) 
+VALUES ('sss', 'mtaasskk@gmail.com', 'No history');
+
+-- Insert tasks with priorities from 1 to 5 for patient with ID 1
+INSERT INTO tasks (task_name, start_time, end_time, priority, repeat_interval, patient_id) 
+VALUES 
+('Check-up', '14:00:00', '14:30:00', 1, 'Monthly', 1),
+('Meditation', '15:00:00', '15:30:00', 2, 'Weekly', 1),   -- Changed from 'Blood Test' to 'Meditation'
+('Walk', '16:00:00', '16:30:00', 3, 'Weekly', 1),           -- Changed from 'Physiotherapy' to 'Walk'
+('Medicine Intake', '17:00:00', '17:30:00', 4, 'Daily', 1),
+('Follow-up Appointment', '18:00:00', '18:30:00', 5, 'Monthly', 1);
+SELECT * FROM patients;
+SELECT * FROM tasks;
